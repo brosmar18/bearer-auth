@@ -9,6 +9,9 @@ const errorHandler = require('./error-handlers/500.js');
 const notFound = require('./error-handlers/404.js');
 const authRoutes = require('./auth/router/index.js');
 
+require('dotenv').config();
+const PORT = process.env.PORT || 5002;
+
 // Prepare the express app
 const app = express();
 
@@ -21,15 +24,19 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use(authRoutes);
 
+app.get('/', (req, res, next) => {
+  res.status(200).send('Hello World!');
+});
+
 // Catchalls
 app.use(notFound);
 app.use(errorHandler);
 
+const start = () => {
+  app.listen(PORT, () => console.log(`Server is running on PORT: ${PORT}`));
+}
+
 module.exports = {
-  server: app,
-  startup: (port) => {
-    app.listen(port, () => {
-      console.log(`Server Up on ${port}`);
-    });
-  },
+  start, 
+  app
 };
