@@ -1,10 +1,10 @@
 'use strict';
 
-const { users } = require('../models/index.js');
+const { userModel } = require('../models');
 
 async function handleSignup(req, res, next) {
   try {
-    let userRecord = await users.create(req.body);
+    let userRecord = await userModel.create(req.body);
     const output = {
       user: userRecord,
       token: userRecord.token
@@ -31,7 +31,7 @@ async function handleSignin(req, res, next) {
 
 async function handleGetUsers(req, res, next) {
   try {
-    const userRecords = await Users.findAll({});
+    const userRecords = await userModel.findAll({});
     const list = users.map(user => user.username);
     res.status(200).json(list);
   } catch (e) {
