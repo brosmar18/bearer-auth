@@ -41,7 +41,11 @@ async function handleGetUsers(req, res, next) {
 }
 
 function handleSecret(req, res, next) {
-  res.status(200).text("Welcome to the secret area!");
+  if (req.user) {
+    res.status(200).send("Welcome to the secret area!");
+  } else {
+    next();
+  }
 }
 
 module.exports = {
