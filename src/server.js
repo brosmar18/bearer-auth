@@ -28,6 +28,12 @@ app.get('/', (req, res, next) => {
   res.status(200).send('Hello World!');
 });
 
+// Temp route for testing 500 errors
+app.get('/throw-error', (req, res, next) => {
+  next(new Error('Test Error'));
+});
+
+
 // Catchalls
 app.use(notFound);
 app.use(errorHandler);
