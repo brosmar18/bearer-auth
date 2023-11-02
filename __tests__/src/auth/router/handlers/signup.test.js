@@ -2,14 +2,14 @@
 
 process.env.SECRET = "TEST_SECRET";
 
-const { db } = require('../../../../../src/auth/models');
+const { sequelizeDatabase } = require('../../../../../src/auth/models');
 const { handleSignup } = require('../../../../../src/auth/router/handlers.js');
 
 beforeAll(async () => {
-  await db.sync();
+  await sequelizeDatabase.sync();
 });
 afterAll(async () => {
-  await db.drop();
+  await sequelizeDatabase.close();
 });
 
 describe('testing the Signup Handler', () => {

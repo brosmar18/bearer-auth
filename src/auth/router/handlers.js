@@ -11,7 +11,7 @@ async function handleSignup(req, res, next) {
     };
     res.status(201).json(output);
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     next(e);
   }
 }
@@ -24,7 +24,7 @@ async function handleSignin(req, res, next) {
     };
     res.status(200).json(user);
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     next(e);
   }
 }
@@ -35,7 +35,7 @@ async function handleGetUsers(req, res, next) {
     const list = userRecords.map(user => user.username);
     res.status(200).json(list);
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     next(e);
   }
 }
