@@ -14,7 +14,7 @@ describe('testing the users route handler', () => {
   const next = jest.fn();
 
   test('Should respond with a secret response', () => {
-    let req = {};
+    let req = { user: { username: 'test' }};
 
     handleSecret(req, res, next);
     expect(res.status).toHaveBeenCalledWith(200);
